@@ -4,6 +4,8 @@
 
 # except
 !.gitignore
+!Img
+!img/**
 !Sources
 !Sources/**
 !Includes
