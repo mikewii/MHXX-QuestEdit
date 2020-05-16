@@ -15,9 +15,9 @@ public:
 
 wxIMPLEMENT_APP_NO_MAIN(MyApp);
 
-int main() {
+int main(int argc, char** argv) {
     
-    wxEntry();
+	wxEntry(argc, argv);
     wxEntryCleanup();
     return 0;
 }

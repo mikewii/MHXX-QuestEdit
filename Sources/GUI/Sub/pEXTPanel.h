@@ -1,6 +1,7 @@
 #pragma once
 
 #include "..\wxGUI.h"
+#include <vector>
 
 class pEXTPanel : public EXTPanel
 {

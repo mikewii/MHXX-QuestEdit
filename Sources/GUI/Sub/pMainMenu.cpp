@@ -21,13 +21,13 @@ using std::string;
 //std::string* pMainMenu::cwd = new std::string();
 //std::string* pMainMenu::appwd = new std::string();
 
-#include "Tools/crypto.hpp"
+//#include "Tools/crypto.hpp"
 
 pMainMenu::pMainMenu( wxWindow* parent )
 :
 MainMenu( parent ) {
 	//crypto::unkKeyMessage(testdata_out, testdata1, testdata2);
-	crypto::TestRsa(NULL, 0);
+	//crypto::TestRsa(NULL, 0);
 	//crypto::GeneratePublicKey(NULL, 0);
 	cwd = fshelp::getcwdir();
 	appwd = cwd;
@@ -39,7 +39,9 @@ MainMenu( parent ) {
 
 void pMainMenu::ArcDec( wxCommandEvent& event )
 {
-// TODO: Implement ArcDec
+	wxString tmp;
+	tmp = wxFilePickerCtrl().GetPath();
+	
 }
 
 void pMainMenu::ArcEnc( wxCommandEvent& event )
@@ -257,21 +259,22 @@ void pMainMenu::OnFixQuestFlags(wxCommandEvent& event) {
 }
 
 void pMainMenu::GenerateKeys(wxFileDirPickerEvent& event) {
-	wxString wxfiPath = event.GetPath();
-	std::string fiPath = wxfiPath.mb_str().data();
-	
-	std::vector<char> buf;
-	std::vector<char> sKey, pKey;
-	fshelp::ReadFile(buf, fiPath);
-	
-	crypto::TestRsa(buf.data(), buf.size());
-	
-	//sKey = crypto::GenerateSecretKey(buf, 1);
-	//pKey = crypto::GeneratePublicKey(buf.data(), 0);
-	
-	
-	
-	fshelp::CreateFile(sKey, fiPath + ".sKey");
+	//wxString wxfiPath = event.GetPath();
+	//std::string fiPath = wxfiPath.mb_str().data();
+	//
+	//std::vector<char> buf;
+	//std::vector<char> sKey, pKey;
+	//fshelp::ReadFile(buf, fiPath);
+	//
+	////fix
+	////crypto::TestRsa(buf.data(), buf.size());
+	//
+	////sKey = crypto::GenerateSecretKey(buf, 1);
+	////pKey = crypto::GeneratePublicKey(buf.data(), 0);
+	//
+	//
+	//
+	//fshelp::CreateFile(sKey, fiPath + ".sKey");
 }
 
 #include "../Sub/pFloatTool.h"

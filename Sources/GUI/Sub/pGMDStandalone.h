@@ -1,5 +1,6 @@
 #pragma once
 #include "..\wxGUI.h"
+#include <vector>
 #include <wx/arrstr.h>
 
 class pGMDStandalone : public GMDStandalone

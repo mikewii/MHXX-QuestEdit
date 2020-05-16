@@ -1,25 +1,16 @@
 .SUFFIXES:
 
-ifeq ($(strip $(WXWIN)),)
-$(error "Please set wxWidgets in your environment.")
-endif
-# TODO
-# use wxWidgets debug library
-
 TOPDIR 		?= 	$(CURDIR)
 
 TARGET		:= 	mhxx_editor
 
 BUILD		:= 	Debug
-INCLUDES	:= 	Includes
+INCLUDES	:= 	Includes Sim
 
-MINGWOPT	:=	D:/Compilers/mingw32-i686-8.1.0-dwarf-rt_v6-rev0/opt
-
-WXLIBNAME	:=  build-static
-WXCXX		:=  $(shell $(WXWIN)/$(WXLIBNAME)/wx-config --cxx)
-WXCXXFLAGS 	:=  $(shell $(WXWIN)/$(WXLIBNAME)/wx-config --cxxflags)
-WXLD		:=  $(shell $(WXWIN)/$(WXLIBNAME)/wx-config --ld)
-WXLIBS		:=  $(shell $(WXWIN)/$(WXLIBNAME)/wx-config --libs all)
+WXCXX		:=  $(shell wx-config --cxx)
+WXCXXFLAGS 	:=  $(shell wx-config --cxxflags)
+WXLD		:=  $(shell wx-config --ld)
+WXLIBS		:=  $(shell wx-config --libs all)
 
 #CURLLIB     := -L $(CURL)/lib -lcurl -lwldap32 -lws2_32
 #CURLINCLUDE := -I $(CURL)/include 
@@ -33,7 +24,8 @@ SOURCES 	:= 	Sources \
 				Sources/Tools/Sim \
 				Sources/Tools/crypto \
 				Sources/Save \
-				Sources/Quest
+				Sources/Quest \
+				Sim
 
 #---------------------------------------------------------------------------------
 # options for code generation
@@ -115,7 +107,7 @@ $(OUTPUT).exe : $(OFILES)
 
 #---------------------------------------------------------------------------------
 %.exe:
-	g++ $(OFILES) $(WXLIBS) -L $(MINGWOPT)/lib/ -lcrypto -static -static-libstdc++ -static-libgcc -o $(OUTPUT)
+	g++ $(OFILES) $(WXLIBS) -o $(OUTPUT)
 	@echo creating $(notdir $@)
 
 -include $(DEPENDS)
